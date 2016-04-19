@@ -17,7 +17,7 @@ For example to embed the html and css files in an assets directory into
 a new file called assets.go as part of a package called webserver:
 
 ```bash
-embedfiles -filename assets.go -packge webserver -include-http -var Assets assets/*.html assets/*.css
+embedfiles -filename assets.go -package webserver -include-http -var Assets assets/*.html assets/*.css
 ```
 
 Code within the assets package could then open index.html for read:
