@@ -14,19 +14,20 @@ http.FileServer interface to avoid importing net/http - Supplying the
 -include-http flag will enable support for that interface.
 
 For example to embed the html and css files in an assets directory into
-a new file called assets.go as part of a package called webserver:
+a new file called assets.go as part of the main package (use the -package
+option to generate a file in a different pacakge)
 
 ```bash
-embedfiles -filename assets.go -package webserver -include-http -var Assets assets/*.html assets/*.css
+embedfiles -filename assets.go -include-http -var Assets assets/*.html assets/*.css
 ```
 
-Code within the assets package could then open index.html for read:
+index.html could then be opened for read:
 
 ```go
 f, err := Assets.Open("assets/index.html")
 ```
 
-or could use an instance as a file server (assuming the -include-http flag was set):
+or Assets could be used with an instance as a file server (assuming the -include-http flag was set):
 
 ```go
 log.Fatal(http.ListenAndServe(":8080", http.FileServer(Assets))
