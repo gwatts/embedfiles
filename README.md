@@ -1,9 +1,9 @@
 # Embed files into Go source code
 
-The embedfiles converts one or more files into Go source code so that
+The embedfiles command converts one or more files into Go source code so that
 they may be compiled directly into a Go program.
 
-It is intended to be run via the go generate tool and creates an instance
+It is intended to be run via  go generate tool and creates an instance
 variable that provides file-like access to the embedded assets using
 a bytes.Reader.
 
@@ -54,3 +54,17 @@ of files to be assigned to different variable names.
     -var string
           Variable name to assign the assets to.  Start with a capital letter to export from the package (default "assets")
 ```
+
+## Usage with go generate
+
+Add one or more lines to existing .go source code to trigger embedfiles when `go generate`
+is executed:
+
+```go
+//go:generate embedfiles -filename email_templates.go templates/*.txt
+```
+
+(note the lack of spaces between `//` and `go:generate` there!)
+
+See the [go generate blog post](https://blog.golang.org/generate) or [documentation](https://golang.org/cmd/go/#hdr-Generate_Go_files_by_processing_source) 
+for more details
